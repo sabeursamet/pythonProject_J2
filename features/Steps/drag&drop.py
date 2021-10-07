@@ -3,12 +3,16 @@ from numpy.testing import assert_equal
 from selenium import webdriver
 from selenium.webdriver import ActionChains
 
+
 PATH = "C:\drivers\chromedriver.exe"
+URL = 'https://qavbox.github.io/demo/dragndrop/'
+
 
 @given(u'user is in url page https://qavbox.github.io/demo/dragndrop/')
 def step_impl(context):
+
     context.driver = webdriver.Chrome(PATH)
-    context.driver.get('https://qavbox.github.io/demo/dragndrop/')
+    context.driver.get(URL)
 
 @given(u'two boxes appeared')
 def step_impl(context):
