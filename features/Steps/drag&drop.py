@@ -3,10 +3,10 @@ from numpy.testing import assert_equal
 from selenium import webdriver
 from selenium.webdriver import ActionChains
 
+PATH = "C:\drivers\chromedriver.exe"
 
 @given(u'user is in url page https://qavbox.github.io/demo/dragndrop/')
 def step_impl(context):
-    PATH = "C:\drivers\chromedriver.exe"
     context.driver = webdriver.Chrome(PATH)
     context.driver.get('https://qavbox.github.io/demo/dragndrop/')
 
