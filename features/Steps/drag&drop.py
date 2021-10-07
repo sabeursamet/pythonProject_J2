@@ -2,34 +2,34 @@ from behave import given,when, then
 from numpy.testing import assert_equal
 from selenium import webdriver
 from selenium.webdriver import ActionChains
-PATH = "C:\drivers\chromedriver.exe"
-driver = webdriver.Chrome(PATH)
+
 
 @given(u'user is in url page https://qavbox.github.io/demo/dragndrop/')
 def step_impl(context):
-
+    PATH = "C:\drivers\chromedriver.exe"
+    context.driver = webdriver.Chrome(PATH)
     context.driver.get('https://qavbox.github.io/demo/dragndrop/')
 
 @given(u'two boxes appeared')
+def step_impl(context):
+    print('page opened')
+
+@when(u'user select "Drag" Box')
 def step_impl(context):
     driver = context.driver
     drag = driver.find_element_by_id('draggable')
     drop = driver.find_element_by_id('droppable')
     action = ActionChains(driver)
     action.drag_and_drop(drag, drop).perform()
-
-@when(u'user select "Drag" Box')
-def step_impl(context):
     print('action done')
 
 @when(u'Drop it to "Drop here" box')
 def step_impl(context):
-    print("drang and drop done")
+    print("drag and drop done")
 
 @then(u'Dropped text appears')
 def step_impl(context):
     driver = context.driver
     msg = driver.find_element_by_id('dropText').text
-    print(msg)
-    context.assert_equal(msg,'Drop!')
-    context.driver.close()
+    assert_equal(msg,'Dropped!')
+    driver.close()
