@@ -12,6 +12,7 @@ def step_impl(context):
 
 @given(u'two boxes appeared')
 def step_impl(context):
+    driver = context.driver
     drag = driver.find_element_by_id('draggable')
     drop = driver.find_element_by_id('droppable')
     action = ActionChains(driver)
@@ -27,6 +28,7 @@ def step_impl(context):
 
 @then(u'Dropped text appears')
 def step_impl(context):
+    driver = context.driver
     msg = driver.find_element_by_id('dropText').text
     print(msg)
     context.assert_equal(msg,'Drop!')
