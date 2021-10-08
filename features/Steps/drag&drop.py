@@ -3,16 +3,11 @@ from numpy.testing import assert_equal
 from selenium import webdriver
 from selenium.webdriver import ActionChains
 
-
-PATH = "C:\drivers\chromedriver.exe"
 URL = 'https://qavbox.github.io/demo/dragndrop/'
-
 
 @given(u'user is in url page https://qavbox.github.io/demo/dragndrop/')
 def step_impl(context):
-
-    context.driver = webdriver.Chrome(PATH)
-    context.driver.get(URL)
+    context.browser.get(URL)
 
 @given(u'two boxes appeared')
 def step_impl(context):
@@ -20,10 +15,9 @@ def step_impl(context):
 
 @when(u'user select "Drag" Box')
 def step_impl(context):
-    driver = context.driver
-    drag = driver.find_element_by_id('draggable')
-    drop = driver.find_element_by_id('droppable')
-    action = ActionChains(driver)
+    drag = context.browser.find_element_by_id('draggable')
+    drop = context.browser.find_element_by_id('droppable')
+    action = ActionChains(context.browser)
     action.drag_and_drop(drag, drop).perform()
     print('action done')
 
@@ -33,7 +27,6 @@ def step_impl(context):
 
 @then(u'Dropped text appears')
 def step_impl(context):
-    driver = context.driver
-    msg = driver.find_element_by_id('dropText').text
+    msg = context.browser.find_element_by_id('dropText').text
     assert_equal(msg,'Dropped!')
-    driver.close()
+
