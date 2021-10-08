@@ -15,10 +15,8 @@ def step_impl(context):
 
 @when(u'user select "Drag" Box')
 def step_impl(context):
-    drag = context.browser.find_element_by_id('draggable')
-    drop = context.browser.find_element_by_id('droppable')
-    action = ActionChains(context.browser)
-    action.drag_and_drop(drag, drop).perform()
+    context.dd.drag()
+
     print('action done')
 
 @when(u'Drop it to "Drop here" box')
@@ -27,6 +25,7 @@ def step_impl(context):
 
 @then(u'Dropped text appears')
 def step_impl(context):
-    msg = context.browser.find_element_by_id('dropText').text
-    assert_equal(msg,'Dropped!')
+    msg = context.dd.drop()
+    assert_equal(msg, "Dropped!")
+
 
