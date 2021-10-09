@@ -5,7 +5,7 @@ from selenium.webdriver import ActionChains
 
 URL = 'https://qavbox.github.io/demo/dragndrop/'
 
-@given(u'user is in url page https://qavbox.github.io/demo/dragndrop/')
+@given(u'user is in designed URL')
 def step_impl(context):
     context.browser.get(URL)
 
