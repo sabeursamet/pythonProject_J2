@@ -26,6 +26,6 @@ def step_impl(context):
 @then(u'Dropped text appears')
 def step_impl(context):
     msg = context.dd.drop()
-    assert_equal(msg, "Dropped!")
+    assert_equal(msg, "Dropp")
 
 
